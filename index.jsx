@@ -1,24 +1,24 @@
 // Update every second for the clock. Expensive elements should
 // throttle themselves
-export const refreshFrequency = 5000 // ms
+export const refreshFrequency = 12000 // ms -- Lowered refresh rate
 
 const USE_BASE_TEN = 10
 
 const theme = {
-  borderSize: 10,
-  thickness: '2px',
-  green: '#97c475',
+  borderSize: 0, // removed borders
+  thickness: '1px', // thickness to 1 px
+  green: 'black', // black for all percentages except lowest
   green_threshold: 80,
-  yellow: '#e5c07b',
+  yellow: 'black',
   yellow_threshold: 55,
-  orange: '#d09a6a',
+  orange: 'black',
   orange_threshold: 30,
   red: '#e06c75',
   screenSize: window.innerWidth
 }
 
 const computeUsedBattery = usedPercentage => {
-  const paddingPercent = (100 - usedPercentage)/2
+  const paddingPercent = (100 - usedPercentage) // show absolute %
   return theme.screenSize * (paddingPercent / 100)
 }
 const computeBatteryColor = level => {
@@ -47,8 +47,8 @@ const getBarStyle = (batteryPercentage) => {
   const borderSize = theme.borderSize + computeUsedBattery(batteryPercentage)
 
   return {
-    top: 25,
-    right: borderSize,
+    top: 0, // position right under menubar
+    right: 0, // show battery percentage from right to left
     left: borderSize,
     position: 'fixed',
     background,
